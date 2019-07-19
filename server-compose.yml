@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+    web:
+        build: .
+        ports:
+            - "9000:8080"
+        networks:
+            - backend
+        command: ["./bin/wait-for.sh", "redis:6379", "--", "/bin/server"]
+        logging:
+            driver: "json-file"
+            options:
+                labels: "servicename"
+                tag: "//"
+                max-size: "100m"
+                max-file: "10"
+
+networks:
+  default:
+    external:
+      name: backend
