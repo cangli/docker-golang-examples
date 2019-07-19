@@ -2,9 +2,11 @@ version: '3'
 services:
 
     web:
-        build: .
+        build:
+            context: https://github.com/cangli/docker-golang-examples.git
+            dockerfile: Dockerfile
         ports:
-            - "9000:8080"
+            - "8080:8080"
         depends_on:
             - "redis"
         command: ["./bin/wait-for.sh", "redis:6379", "--", "/bin/server"]
