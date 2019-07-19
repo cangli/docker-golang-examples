@@ -5,7 +5,8 @@ RUN git clone https://github.com/cangli/docker-golang-examples.git && \
     go mod init main && \
     go get -u github.com/ugorji/go@v1.1.7 && \
     CGO_ENABLED=0 GOOS=linux go build docker-golang-examples/server.go && \
-    cp docker-golang-examples/wait-for.sh . && \
+    git clone https://github.com/mrako/wait-for.git && \
+    cp wait-for/wait-for wait-for.sh && \
     chmod 755 wait-for.sh
 
 FROM alpine:latest

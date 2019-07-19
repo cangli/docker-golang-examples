@@ -2,7 +2,9 @@ version: '3'
 services:
 
     web:
-        build: .
+        build:
+            context: https://github.com/cangli/docker-golang-examples.git
+            dockerfile: Dockerfile
         ports:
             - "8080:8080"
         networks:

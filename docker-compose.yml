@@ -11,12 +11,16 @@ services:
             - "redis"
         command: ["./bin/wait-for.sh", "redis:6379", "--", "/bin/server"]
         logging:
-            driver: "json-file"
+            driver: syslog
             options:
-                labels: "servicename"
-                tag: "//"
-                max-size: "100m"
-                max-file: "10"
+                syslog-address: "tcp://172.17.0.1:601"
+    #            driver: "json-file"
+    #            options:
+    #                labels: "servicename"
+    #                tag: "//"
+    #                max-size: "100m"
+    #                max-file: "10"
+
     redis:
         image: "redis:alpine"
 
