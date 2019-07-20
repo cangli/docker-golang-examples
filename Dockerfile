@@ -2,8 +2,6 @@ FROM golang:latest as builder
 WORKDIR /go
 RUN git clone https://github.com/cangli/docker-golang-examples.git && \
     unset GOPATH && \
-    go mod init main && \
-    go get -u github.com/ugorji/go@v1.1.7 && \
     CGO_ENABLED=0 GOOS=linux go build docker-golang-examples/server.go && \
     git clone https://github.com/mrako/wait-for.git && \
     cp wait-for/wait-for wait-for.sh && \
